@@ -3,7 +3,6 @@ import csv
 
 csvpath = os.path.join('Resources', 'budget_data.csv')
 
-
 with open(csvpath) as csvfile:
 
     # CSV reader specifies delimiter and variable that holds contents
@@ -11,10 +10,10 @@ with open(csvpath) as csvfile:
 
     print(csvreader)
 
-    # Read the header row first (skip this step if there is now header)
+    # Read the header row first
     csv_header = next(csvreader)
-    
-    # Read each row of data after the header
+    print(f"CSV Header: {csv_header}")
+
     months = 0
     total = 0
     last = 867884
@@ -34,8 +33,6 @@ with open(csvpath) as csvfile:
             decrease = row[1]
             decreaseDate = row[0]
         
-        #decrease += min(row[1])
-
     print("Financial Analysis")
     print("----------------------------")
     print(f"Total Months: {months}")
@@ -44,4 +41,16 @@ with open(csvpath) as csvfile:
     print(f"Greatest Increase in Profits: {increaseDate} (${increase})")
     print(f"Greatest Decrease in Profits: {decreaseDate} (${decrease})")
 
-        
+# define output path
+output_path = os.path.join("Analysis", "PyBank.txt")
+
+# Opening the file and writing the output
+with open(output_path, 'w', newline='') as txtfile:
+    
+    txtfile.write("Financial Analysis\n")
+    txtfile.write("----------------------------\n")
+    txtfile.write(f"Total Months: {months}\n")
+    txtfile.write(f"Total: ${total}\n")
+    txtfile.write(f"Average Change: ${round((average / months), 2)}\n")
+    txtfile.write(f"Greatest Increase in Profits: {increaseDate} (${increase})\n")
+    txtfile.write(f"Greatest Decrease in Profits: {decreaseDate} (${decrease})\n")
