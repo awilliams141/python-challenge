@@ -1,8 +1,10 @@
 import os
 import csv
 
+# declaring csv path
 csvpath = os.path.join('Resources', 'budget_data.csv')
 
+# opening csv file 
 with open(csvpath) as csvfile:
 
     # CSV reader specifies delimiter and variable that holds contents
@@ -33,6 +35,7 @@ with open(csvpath) as csvfile:
             decrease = row[1]
             decreaseDate = row[0]
         
+    # printing the analysis to the console
     print("Financial Analysis")
     print("----------------------------")
     print(f"Total Months: {months}")
