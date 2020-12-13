@@ -1,8 +1,10 @@
 import os
 import csv
 
+# defining csv path
 csvpath = os.path.join('Resources', 'election_data.csv')
 
+# opening csv
 with open(csvpath) as csvfile:
 
     # CSV reader specifies delimiter and variable that holds contents
@@ -14,6 +16,7 @@ with open(csvpath) as csvfile:
     liVotes = 0
     otoolVotes = 0
 
+    # looping through items in csv
     for row in csvreader:
         total += 1
         if row[2] == "Khan":
@@ -25,6 +28,7 @@ with open(csvpath) as csvfile:
         elif row[2] == "O'Tooley":
             otoolVotes += 1
 
+        # determing who received the most votes
         if khanVotes > correyVotes and khanVotes > liVotes and khanVotes > otoolVotes:
             winner = "Khan"
         elif correyVotes > khanVotes and correyVotes > liVotes and correyVotes > otoolVotes:
@@ -34,11 +38,13 @@ with open(csvpath) as csvfile:
         elif otoolVotes > khanVotes and otoolVotes > correyVotes and otoolVotes > liVotes:
             winner = "O'Tooley"
 
+    # calculating percent of votes won
     khanPer = (khanVotes / total) * 100
     correyPer = (correyVotes / total) * 100
     liPer = (liVotes / total) * 100
     otoolPer = (otoolVotes / total) * 100
     
+    # printing results to the console
     print("Election Results")
     print("-------------------------")
     print(f"Total Votes: {total}")
@@ -56,6 +62,7 @@ output_path = os.path.join("Analysis", "PyPoll.txt")
 
 # Opening the file and writing the output
 with open(output_path, 'w', newline='') as txtfile:
+    
     txtfile.write("Election Results\n")
     txtfile.write("-------------------------\n")
     txtfile.write(f"Total Votes: {total}\n")
