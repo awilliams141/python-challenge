@@ -8,11 +8,6 @@ with open(csvpath) as csvfile:
     # CSV reader specifies delimiter and variable that holds contents
     csvreader = csv.reader(csvfile, delimiter=',')
 
-    print(csvreader)
-
-    # Read the header row first (skip this step if there is now header)
-    csv_header = next(csvreader)
-
     total = 0
     khanVotes = 0
     correyVotes = 0
@@ -54,4 +49,21 @@ with open(csvpath) as csvfile:
     print(f"O'Tooley: {round(otoolPer, 3)}% ({otoolVotes})")
     print("-------------------------")
     print(f"Winner: {winner}")
-    print("-------------------------")
+    print("-------------------------")   
+
+# define output path
+output_path = os.path.join("Analysis", "PyPoll.txt")
+
+# Opening the file and writing the output
+with open(output_path, 'w', newline='') as txtfile:
+    txtfile.write("Election Results\n")
+    txtfile.write("-------------------------\n")
+    txtfile.write(f"Total Votes: {total}\n")
+    txtfile.write("-------------------------\n")
+    txtfile.write(f"Khan: {round(khanPer, 3)}% ({khanVotes})\n")
+    txtfile.write(f"Correy: {round(correyPer, 3)}% ({correyVotes})\n")
+    txtfile.write(f"Li: {round(liPer, 3)}% ({liVotes})\n")
+    txtfile.write(f"O'Tooley: {round(otoolPer, 3)}% ({otoolVotes})\n")
+    txtfile.write("-------------------------\n")
+    txtfile.write(f"Winner: {winner}\n")
+    txtfile.write("-------------------------\n")  
